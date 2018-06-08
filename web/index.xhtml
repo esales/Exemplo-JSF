@@ -41,21 +41,24 @@
                                     <f:setPropertyActionListener value="#{e}" target="#{estadoBean.estado}"/>
                             </h:commandLink> 
                             <br/>
-                            <p:commandLink value="editar" onclick="PF('alterarEstadoDialog').show()" >
+                            <p:commandLink value="editar" oncomplete="PF('alterarEstadoDialog').show()" update=":lista:dialogAlterar">
                                     <f:setPropertyActionListener value="#{e}" target="#{estadoBean.estado}"/>
                             </p:commandLink>
                              
                         </h:column>
                     </h:dataTable>
                     <p:dialog id="dialogAlterar" header="Alterar Estado" widgetVar="alterarEstadoDialog" modal="true" height="100">
-                        <h:outputLabel value="Sigla" for="ipSigla" />
-                        <h:selectOneMenu value="#{estadoBean.estado.sigla}"  >
-                            <f:selectItems value="#{estadoBean.siglas}" var="s" itemValue="#{s}" itemLabel="#{s}" />                
-                        </h:selectOneMenu>
-                        <br/>
+                        <h:panelGrid columns="2" >
+                            <h:outputLabel value="Sigla" for="ipSigla" />
+                            <h:selectOneMenu value="#{estadoBean.estado.sigla}" >
+                                <f:selectItems value="#{estadoBean.siglas}" var="s" itemValue="#{s}" itemLabel="#{s}" />                
+                            </h:selectOneMenu>
+                            
+                            <h:outputLabel value="Nome" for="ipNome" />
+                            <h:inputText value="#{estadoBean.estado.nome}" id="ipNome" />
 
-                        <h:outputLabel value="Nome" for="ipNome" />
-                        <h:inputText value="#{estadoBean.estado.nome}" id="ipNome" />
+                            <h:commandButton value="Alterar" action="#{estadoBean.alterar}" />
+                        </h:panelGrid>
                     </p:dialog>
                 </h:form>
             </div>

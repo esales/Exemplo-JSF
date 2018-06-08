@@ -29,6 +29,12 @@ public class EstadoRepositorio {
         this.entityManager.getTransaction().commit();
     }
     
+    public void alterar(Estado estado){
+        this.entityManager.getTransaction().begin();
+        this.entityManager.merge(estado);
+        this.entityManager.getTransaction().commit();
+    }
+    
     public List<Estado> retornaTodos(){
         return this.entityManager.createQuery("from Estado").getResultList();
     }

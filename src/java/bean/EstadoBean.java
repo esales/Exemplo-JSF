@@ -29,17 +29,22 @@ public class EstadoBean {
     public String cadastrar(){
         estadoRepositorio.cadastrar(this.estado);
         retornaTodos();
+        this.estado = new Estado();
         return "";
     }
     
     public String excluir(){
         estadoRepositorio.excluir(this.estado);
         retornaTodos();
+        this.estado = new Estado();
         return "";
     }
     
-    public void abrirEditar(){
-        
+    public String alterar(){
+        estadoRepositorio.alterar(this.estado);
+        retornaTodos();
+        this.estado = new Estado();
+        return "";
     }
     
     public void carregarSiglas(){
